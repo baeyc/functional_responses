@@ -12,6 +12,11 @@ All modules are available on PyPI:
  - `matplotlib`
  - `tqdm`
  - `functools`
+ - `pandas`
+ - `seaborn`
+ - `collections`
+ - `os`
+ - `re`
  
  ## Run examples
 
