@@ -14,9 +14,9 @@ utils.plot_bias_std(path, residual=False)
 utils.plot_bias_std(path, residual=True)
 
 
-# # ---------------------------------------
-# # Generate model selection results tables
-# # ---------------------------------------
+# =============================================================================
+# Generate model selection results tables
+# =============================================================================
 
 
 table_bic_rand_eff, latex_rand_eff = utils.generate_bic_table(

@@ -24,7 +24,7 @@ else:
     seq_cv = jnp.array([25, 50, 75])
 
 keyy = 0
-Nsimus = 3  # 1000
+Nsimus = 1000
 n_vec = jnp.array([10, 20, 30, 40, 50, 60, 70, 80, 90])
 J_vec = jnp.array([50, 25, 17, 12, 10, 8, 7, 6, 5])
 
