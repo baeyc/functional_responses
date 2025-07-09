@@ -4,7 +4,6 @@ import jax.numpy as jnp
 import jax
 import algos
 import pickle
-import pathlib
 
 
 # These experiments were performed with independent random effects. Change config.py and models.py accordingly to reproduce the results presented in the article.

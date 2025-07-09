@@ -1,5 +1,4 @@
 import collections
-from typing import Sequence
 import models
 import jax.numpy as jnp
 import jax
