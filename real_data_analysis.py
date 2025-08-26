@@ -101,8 +101,8 @@ fig,axs = plt.subplots(nrows=2,ncols=3,figsize=(9,6))
 axs = axs.ravel()
 for i in range(Nrep):
     for j in range(6):        
-        axs[j].plot(params_nomecanoise[i][:,j],alpha=0.75,linewidth=1)   
-	axs[j].title.set_text(thetanames[j])
+        axs[j].plot(params_nomecanoise[i][:,j],alpha=0.75,linewidth=1)
+		axs[j].title.set_text(thetanames[j])
 fig.suptitle("No mecanistic noise")    
 fig.tight_layout()  
 plt.show()     
