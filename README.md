@@ -45,4 +45,5 @@ The real dataset is contained in the file `schroder_et_al.csv`, which was obtain
 In order to reproduce the data of the paper Baey, Billiard, Delattre (2025+):
   - files `several_runs_sample_size.py` and `compute_rmse_sample_size.py` allows to obtain Figures 5 and 6, 
   - files `several_runs_variability_level.py`, `model_choice_variability_level.py`, and `compute_results_variability_level.py` allow to obtain Figures 7, 8, 9, 10 and Tables 1 and 2,
-  - `real_data_analysis.py` allows to obtain all the results (Tables and Figures) of section 3.3. 
+  - `real_data_analysis.py` allows to obtain all the results (Tables and Figures) of section 3.3.
+**Note that these scripts can be computationnally heavy and may take several hours to run. The computationnal time can be reduced by decreasing the number of repetitions Nsimus.**
