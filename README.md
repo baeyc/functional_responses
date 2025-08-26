@@ -36,7 +36,9 @@ The other files run and/or analyze the results from the model:
   - `several_runs_variability_level.py` runs several repetitions of the SGD algorithm on sets of simulated data, for different levels of variability in the data
   - `model_choice_variability_level.py` performs model choice on sets of simulated data, for different levels of variability in the data
   - `compute_results_variability_level.py` plots graphs of parameter estimates and generates tables of model selection results for different levels of variability in the data
-  - `real_data_analysis.py` perform analysis of Schroder et al. data on **Artemia** and **Heterandria**
+  - `real_data_analysis.py` perform analysis of Schroder et al. data on **Artemia** and **Heterandria**.
+
+The real dataset is contained in the file `schroder_et_al.csv`, which was obtained from the authors of the study. It corresponds to raw data on the number of preys ingested per unit of time (no transformation of the data was necessary).
   
 In order to reproduce the data of the paper Baey, Billiard, Delattre (2025+):
   - files `several_runs_sample_size.py` and `compute_rmse_sample_size.py` allows to obtain Figures 5 and 6, 
