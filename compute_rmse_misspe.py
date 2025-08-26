@@ -14,7 +14,7 @@ import algos
 import pandas as pd
 
 # load results
-
+path = 'results/'  # change to your results path
 
 def params_to_array(param):
     arr = jnp.concatenate([param.pop, param.indiv.mean_latent,
@@ -92,7 +92,6 @@ def loadtheta(fn):
 
 
 # Import BIC
-path = 'results/'  # change to your results path
 files = [f for f in os.listdir(path) if re.match(
     r'modchoice_mecanoise1_d2_biccorrect*', f)]
 bic_correct = [loadBIC(os.path.join(path, f)) for f in files]
