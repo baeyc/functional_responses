@@ -29,8 +29,8 @@ parametrization = pc.NamedTuple(
     pop=pc.Real(shape=config.estimation_description.npop),
     indiv=pc.NamedTuple(
         mean_latent=pc.Real(shape=config.estimation_description.nindiv),
-        # cov_latent=pc.MatrixSymPosDef(dim=config.estimation_description.nindiv),
-        cov_latent=pc.MatrixDiagPosDef(dim=config.estimation_description.nindiv)
+        cov_latent=pc.MatrixSymPosDef(dim=config.estimation_description.nindiv),
+        #cov_latent=pc.MatrixDiagPosDef(dim=config.estimation_description.nindiv)
     ),
     var_residual=pc.RealPositive(),
 )
