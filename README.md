@@ -30,6 +30,8 @@ File `algos.py` contains the SGD algorithm.
 
 File `config.py` contains the configuration of the mixed-effects model, i.e. the names of the random effects as well as their covariance structure.
 
+**In most of the above files, the path to the directory containing the results should be provided at the beginning of the script (there is a default value on the first few lines that should be replaced by the appropriate folder name.**
+
 The other files run and/or analyze the results from the model:
   - `several_runs_sample_size.py` and `several_runs_misspe.py` run several repetitions of the SGD algorithm on sets of simulated data, for different sampling size and for a misspecified model.
   - `compute_rmse_sample_size.py` and `compute_rmse_misspe.py` compute the RMSE of the parameter estimates, and draw plots of the results
