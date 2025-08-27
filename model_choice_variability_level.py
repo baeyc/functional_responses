@@ -17,6 +17,8 @@ import pickle
 # residual = False to simulate data using the random effects coefficient of variation setting
 residual = False
 
+folder = 'results'
+
 if residual is True:
     seq_cv = jnp.array([5, 10, 25, 50, 75])
 else:
@@ -117,36 +119,36 @@ for exp in range(len(n_vec)):
             bic_correct.append(res_comp.bic_correct)
 
         if residual is True:
-            with open("modchoice_misspenoise_thetawrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_thetawrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, theta_wrong)
-            with open("modchoice_misspenoise_thetacorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_thetacorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, theta_correct)
-            with open("modchoice_misspenoise_llwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_llwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, ll_wrong)
-            with open("modchoice_misspenoise_llcorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_llcorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, ll_correct)
-            with open("modchoice_misspenoise_bicwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_bicwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, bic_wrong)
-            with open("modchoice_misspenoise_biccorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_biccorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, bic_correct)
-            fname = "res_misspenoise_n" + \
+            fname = folder+"res_misspenoise_n" + \
                 str(n_vec[exp])+"_J"+str(J_vec[exp])+"_residual_cv" + \
                 str(cv) + ".pkl"
             save_object(res_comp, fname)
         else:
-            with open("modchoice_misspenoise_thetawrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_thetawrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, theta_wrong)
-            with open("modchoice_misspenoise_thetacorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_thetacorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, theta_correct)
-            with open("modchoice_misspenoise_llwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_llwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, ll_wrong)
-            with open("modchoice_misspenoise_llcorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_llcorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, ll_correct)
-            with open("modchoice_misspenoise_bicwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_bicwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, bic_wrong)
-            with open("modchoice_misspenoise_biccorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
+            with open(folder+"modchoice_misspenoise_biccorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv"+str(cv)+".npy", 'wb') as f:
                 jnp.save(f, bic_correct)
-            fname = "res_misspenoise_n" + \
+            fname = folder+"res_misspenoise_n" + \
                 str(n_vec[exp])+"_J"+str(J_vec[exp])+"_rand_eff_cv" + \
                 str(cv) + ".pkl"
             save_object(res_comp, fname)
