@@ -12,6 +12,9 @@ import matplotlib.pyplot as plt
 
 import sys
 
+Nsimus = 1000
+folder = 'results' 
+
 thetatrue = {"pop": jnp.array([]),
              "indiv": {"mean_latent": jnp.array([0.7, 0.5]), "cov_latent": jnp.array([[0.07, 0], [0, 0.05]])},
              "var_residual": 0.1**2}
@@ -71,7 +74,6 @@ ResEstim = collections.namedtuple("ResEstim", ("theta_wrong", "theta_correct",
                                   "ll_wrong", "ll_correct", "bic_wrong", "bic_correct", "y", "t", "z", "zw", "zc"))
 
 keyy = 0
-Nsimus = 1000
 n_vec = jnp.array([10, 20, 30, 40, 50, 60, 70, 80, 90])
 J_vec = jnp.array([50, 25, 17, 12, 10, 8, 7, 6, 5])
 meca_noise = 1
@@ -101,15 +103,15 @@ for exp in range(len(n_vec)):
         bic_wrong.append(res_comp.bic_wrong)
         bic_correct.append(res_comp.bic_correct)
 
-    with open("modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_thetawrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
+    with open(folder+"modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_thetawrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
         jnp.save(f, theta_wrong)
-    with open("modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_thetacorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
+    with open(folder+"modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_thetacorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
         jnp.save(f, theta_correct)
-    with open("modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_llwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
+    with open(folder+"modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_llwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
         jnp.save(f, ll_wrong)
-    with open("modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_llcorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
+    with open(folder+"modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_llcorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
         jnp.save(f, ll_correct)
-    with open("modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_bicwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
+    with open(folder+"modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_bicwrong_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
         jnp.save(f, bic_wrong)
-    with open("modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_biccorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
+    with open(folder+"modchoice_mecanoise"+str(meca_noise)+"_d"+str(dim)+"_biccorrect_n"+str(n_vec[exp])+"_J"+str(J_vec[exp])+".npy", 'wb') as f:
         jnp.save(f, bic_correct)
