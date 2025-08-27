@@ -11,6 +11,7 @@ import pickle
 # and the models.py file should have:
 # cov_latent=pc.MatrixDiagPosDef(dim=config.estimation_description.nindiv),
 
+folder = 'results'
 
 # residual = True to simulate data using the signal-to-noise ratio setting
 # residual = False to simulate data using the random effects coefficient of variation setting
@@ -78,18 +79,18 @@ for exp in range(len(n_vec)):
                     for key in jax.random.split(jax.random.PRNGKey(keyy), Nsimus)]
 
         if residual is True:
-            fname = "allres_n" + str(n_vec[exp])+"_J"+str(J_vec[exp]) + \
+            fname = folder + "allres_n" + str(n_vec[exp])+"_J"+str(J_vec[exp]) + \
                 "_residual_cv" + str(cv)+".pkl"
             save_object(many_res, fname)
-            ftname = "residual_cv"+str(cv)+"_allres_n"+str(n_vec[exp])+".jnp"
+            ftname = folder + "residual_cv"+str(cv)+"_allres_n"+str(n_vec[exp])+".jnp"
             theta = jnp.array([res.theta for res in many_res])
             with open(ftname, 'wb') as f:
                 jnp.save(f, theta)
         else:
-            fname = "allres_n" + str(n_vec[exp])+"_J"+str(J_vec[exp]) + \
+            fname = folder + "allres_n" + str(n_vec[exp])+"_J"+str(J_vec[exp]) + \
                 "_rand_eff_cv" + str(cv)+".pkl"
             save_object(many_res, fname)
-            ftname = "rand_eff_cv"+str(cv)+"_allres_n"+str(n_vec[exp])+".jnp"
+            ftname = folder +  "rand_eff_cv"+str(cv)+"_allres_n"+str(n_vec[exp])+".jnp"
             theta = jnp.array([res.theta for res in many_res])
             with open(ftname, 'wb') as f:
                 jnp.save(f, theta)
