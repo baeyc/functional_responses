@@ -30,7 +30,12 @@ File `algos.py` contains the SGD algorithm.
 
 File `config.py` contains the configuration of the mixed-effects model, i.e. the names of the random effects as well as their covariance structure.
 
-**In most of the above files, the path to the directory containing the results should be provided at the beginning of the script (there is a default value on the first few lines that should be replaced by the appropriate folder name.**
+> [!WARNING]
+> In most of the above files, the path to the directory containing the results should be provided at the beginning of the script (there is a default value on the first few lines that should be replaced by the appropriate folder name.
+
+> [!CAUTION]
+> In the current version of the code, when one wishes to change the model to take into account different rand effects structures, it is necessary to modify the files `config.py` and `models.py`. While this is not optimal, it is the simplest way to optimize compatibility with the JAX library. We are working on more sophisticated solutions.
+
 
 The other files run and/or analyze the results from the model. They should be run in a specific order. We detailed below several sequences of scripts.
 
