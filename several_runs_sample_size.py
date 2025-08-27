@@ -13,6 +13,9 @@ import matplotlib.pyplot as plt
 # Set thetanum=2 to use the parameter set theta2
 cov = True
 theta_num = 1
+Nsimus = 1000
+
+folder = 'results'
 
 theta1 = (theta_num == 1)
 theta2 = not theta1
@@ -49,7 +52,6 @@ def sample_and_estim(theta, n, J, meca_noise, dim, prng_key, n_preheat, n_iter, 
 ResEstim = collections.namedtuple("ResEstim", ("theta", "y", "t"))
 
 keyy = 0
-Nsimus = 1000
 n_vec = jnp.array([10, 20, 30, 40, 50, 60, 70, 80, 90])
 J_vec = jnp.array([50, 25, 17, 12, 10, 8, 7, 6, 5])
 meca_noise = 1
@@ -64,10 +66,10 @@ def save_object(obj, filename):
 for exp in range(len(n_vec)):
     many_res = [sample_and_estim(thetatrue, n_vec[exp], J_vec[exp], meca_noise, dim, key, 1000, 3500, None)
                 for key in jax.random.split(jax.random.PRNGKey(keyy), Nsimus)]
-    fname = "mecanoise"+str(meca_noise)+"_d"+str(dim)+"_allres_n" + \
+    fname = folder + "mecanoise"+str(meca_noise)+"_d"+str(dim)+"_allres_n" + \
         str(n_vec[exp])+"_J"+str(J_vec[exp])+"theta"+str(theta_num)+".pkl"
     save_object(many_res, fname)
-    ftname = "theta"+str(theta_num)+"_mecanoise"+str(meca_noise) + \
+    ftname = folder + "theta"+str(theta_num)+"_mecanoise"+str(meca_noise) + \
         "_d"+str(dim)+"_allres_n"+str(n_vec[exp])+".jnp"
     theta = jnp.array([res.theta for res in many_res])
     with open(ftname, 'wb') as f:
