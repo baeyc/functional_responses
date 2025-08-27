@@ -6,7 +6,7 @@ import utils
 # =============================================================================
 
 # Replace 'my-path' with the actual path to the directory containing the results files
-path = 'my-path'
+path = 'results'
 
 # Plot bias and standard deviation of estimators when changing the variability of the random effects
 utils.plot_bias_std(path, residual=False)
