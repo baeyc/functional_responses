@@ -4,18 +4,35 @@ import jax.numpy as jnp
 import jax
 import algos
 import pickle
+from pathlib import Path
 
-# These experiments were performed with independent random effects. Change config.py and models.py accordingly to reproduce the results presented in the article.
+
+# Ensure that "/results" is a subdirectory of the working directory.
+# The working directory must contain this .py script.
+# To run this script correctly, please follow these steps:
+# 1. The "/results" directory must exist inside the working directory where this script is located.
+# 2. If the "/results" directory does not exist, create it inside the working directory.
+# Example directory structure:
+# /working_directory/
+# ├── several_runs_variability_level.py
+# └── results/
+
+
+current_path = Path.cwd()
+path = current_path / "results"
+
+
+# These experiments were performed with INDEPENDENT random effects. Change config.py and models.py accordingly to reproduce the results presented in the article.
 # To model two INDEPENDENT random effects for lambda and h the config.py file should have the following line :
 # random_eff = "lambda_h"
 # and the models.py file should have:
 # cov_latent=pc.MatrixDiagPosDef(dim=config.estimation_description.nindiv),
 
-folder = 'results'
-
+# Choose one of the following values for variable "residual":
 # residual = True to simulate data using the signal-to-noise ratio setting
 # residual = False to simulate data using the random effects coefficient of variation setting
-residual = True
+
+residual = False
 
 if residual is True:
     seq_cv = jnp.array([5, 10, 25, 50, 75])
@@ -24,7 +41,7 @@ else:
 
 
 keyy = 0
-Nsimus = 1000
+Nsimus = 2  # 1000
 n_vec = jnp.array([10, 20, 30, 40, 50, 60, 70, 80, 90])
 J_vec = jnp.array([50, 25, 17, 12, 10, 8, 7, 6, 5])
 
@@ -79,18 +96,18 @@ for exp in range(len(n_vec)):
                     for key in jax.random.split(jax.random.PRNGKey(keyy), Nsimus)]
 
         if residual is True:
-            fname = folder + "allres_n" + str(n_vec[exp])+"_J"+str(J_vec[exp]) + \
-                "_residual_cv" + str(cv)+".pkl"
+            fname = path / \
+                f"allres_n{n_vec[exp]}_J{J_vec[exp]}_residual_cv{cv}.pkl"
             save_object(many_res, fname)
-            ftname = folder + "residual_cv"+str(cv)+"_allres_n"+str(n_vec[exp])+".jnp"
+            ftname = path / f"residual_cv{cv}_allres_n{n_vec[exp]}.jnp"
             theta = jnp.array([res.theta for res in many_res])
             with open(ftname, 'wb') as f:
                 jnp.save(f, theta)
         else:
-            fname = folder + "allres_n" + str(n_vec[exp])+"_J"+str(J_vec[exp]) + \
-                "_rand_eff_cv" + str(cv)+".pkl"
+            fname = path / \
+                f"allres_n{n_vec[exp]}_J{J_vec[exp]}_rand_eff_cv{cv}.pkl"
             save_object(many_res, fname)
-            ftname = folder +  "rand_eff_cv"+str(cv)+"_allres_n"+str(n_vec[exp])+".jnp"
+            ftname = path / f"rand_eff_cv{cv}_allres_n{n_vec[exp]}.jnp"
             theta = jnp.array([res.theta for res in many_res])
             with open(ftname, 'wb') as f:
                 jnp.save(f, theta)

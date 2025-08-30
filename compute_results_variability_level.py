@@ -1,18 +1,27 @@
 import utils
 
+from pathlib import Path
 
 # =============================================================================
 # Plot graphs
 # =============================================================================
 
-# Replace 'my-path' with the actual path to the directory containing the results files
-path = 'results'
 
-# Plot bias and standard deviation of estimators when changing the variability of the random effects
-utils.plot_bias_std(path, residual=False)
-# Plot bias and standard deviation of estimators when changing the variability of the residuals
+# Ensure that "/results" contains the results files and is a subdirectory of the working directory.
+# The working directory must contain this .py script.
+# Example directory structure:
+# /working_directory/
+# ├── compute_results_variability_level.py
+# └── results/
+
+current_path = Path.cwd()
+path = current_path / "results"
+
+
+# results related to signal-to-noise ratio
 utils.plot_bias_std(path, residual=True)
-
+# results related to  random effects coefficient of variation
+utils.plot_bias_std(path, residual=False)
 
 # =============================================================================
 # Generate model selection results tables

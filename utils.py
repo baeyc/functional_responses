@@ -62,6 +62,7 @@ thetanames = [r'$\mu_{\lambda}$', r'$\mu_{h}$',
 
 
 def load(fn):
+
     with open(fn, 'rb') as f:
         theta = jnp.load(f)
 
@@ -138,7 +139,7 @@ def plot_bias_std(path, residual):
     pattern = re.compile(fr"{suffix}\d+")
 
     files = [f for f in os.listdir(path) if re.match(pattern, f)]
-    params_data = pd.concat([load(f) for f in files])
+    params_data = pd.concat([load(os.path.join(path, f)) for f in files])
 
     params_last = (
         params_data
@@ -253,7 +254,8 @@ def generate_bic_table(path, residual):
     # path = pathlib.Path(path)
     residual_str = "residual" if residual else "rand_eff"
 
-    cv_regex = re.compile(fr"_{residual_str}_cv(\d+)\.npy$")
+    # cv_regex = re.compile(fr"_{residual_str}_cv(\d+)\.npy$")
+    cv_regex = re.compile(fr"{residual_str}_cv(\d+)_allres.*")
     cv_list = sorted(
         int(m.group(1))
         for f in os.listdir(path)
@@ -269,9 +271,9 @@ def generate_bic_table(path, residual):
         patt_c = re.compile(fr"modchoice_misspenoise_biccorrect.*{suffix}")
         patt_w = re.compile(fr"modchoice_misspenoise_bicwrong.*{suffix}")
 
-        df_c = pd.concat([loadBIC(fname)
+        df_c = pd.concat([loadBIC(os.path.join(path, fname))
                          for fname in all_files if patt_c.match(fname)])
-        df_w = pd.concat([loadBIC(fname)
+        df_w = pd.concat([loadBIC(os.path.join(path, fname))
                          for fname in all_files if patt_w.match(fname)])
 
         df_c["cv"] = cv
