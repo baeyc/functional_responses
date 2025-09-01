@@ -44,6 +44,10 @@ The other files run and/or analyze the results from the model. They should be ru
   2. once the previous scripts have been run, run `compute_rmse_sample_size.py` or `compute_rmse_misspe.py` to compute the RMSE of the parameter estimates, and draw plots of the results. These scripts will load the results from the folder `results`.
 
 ### Effect of the level of variability
+
+>[!CAUTION]
+> The analysis of the effect of the variability level was conducted on the model with two independent random effects, and subsequently the associated scripts that allow to plot graphs or generate tables are adpated to this specific case (in particular, the dimensions of the figures and tables). If one wishes to run a similar analysis in a different model, the script `compute_results_variability_level.py` should be modified accordingly.
+
   1. run the script `several_runs_variability_level.py` to generate several simulated datasets with different levels of variability, and run the SGD algorithm on each of these datasets. Results are stored in the folder `results`.
   2. run `model_choice_variability_level.py` to generate several simulated datasets and fit a misspecified model (it is similar to the script `several_runs_misspe.py` except that several levels of variability are explored). Results files are stored in the folder `results`
   3. run the script `compute_results_variability_level.py` to plots graphs of parameter estimates and generates tables of model selection results for different levels of variability in the data. This script needs to load results files stored in the folder `results`.
@@ -58,4 +62,6 @@ In order to reproduce the data of the paper Baey, Billiard, Delattre (2025+):
   - files `several_runs_sample_size.py` and `compute_rmse_sample_size.py` allows to obtain Figures 5 and 6, 
   - files `several_runs_variability_level.py`, `model_choice_variability_level.py`, and `compute_results_variability_level.py` allow to obtain Figures 7, 8, 9, 10 and Tables 1 and 2,
   - `real_data_analysis.py` allows to obtain all the results (Tables and Figures) of section 3.3.
-**Note that these scripts can be computationnally heavy and may take several hours to run. The computationnal time can be reduced by decreasing the number of repetitions Nsimus.**
+    
+>[!WARNING]
+> Note that these scripts can be computationnally heavy and may take several hours to run. The computationnal time can be reduced by decreasing the number of repetitions Nsimus.
