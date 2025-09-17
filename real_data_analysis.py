@@ -1,6 +1,7 @@
 import config
 import models
 import jax.numpy as jnp
+import numpy as np
 import jax
 from tqdm import tqdm
 import algos
@@ -57,7 +58,7 @@ while len(res_mecanoise) < 10:
 	j += 1
 	key2 = jax.random.split(jax.random.PRNGKey(j),2)
 	keyinit2 = jax.random.split(jax.random.PRNGKey(100+j),2)
-	theta02 = jax.random.uniform(key=keyinit2[1], shape=(models.parametrization.size,), minval=0.9, maxval=1.1)*models.parametrization.params_to_reals1d(thetainit3)		
+	theta02 = jax.random.uniform(key=keyinit2[1], shape=(models.parametrization.size,), minval=0.9, maxval=1.1)*models.parametrization.params_to_reals1d(thetainit)		
 	x = algos.fisher_sgd(y=yreal,d=dreal,delta=1.,meca_noise=1,dim=3,prng_key=key2[1],pre_heating=n_heat,Nmax=n_tot,theta0=theta02,optim_step='Adam',factor=0.18,alpha=0.85,rho=0.75)
 	if not x.theta[-1][0] == 0:
 		res_mecanoise.append(x)	
@@ -112,7 +113,7 @@ fig,axs = plt.subplots(nrows=2,ncols=3,figsize=(9,6))
 axs = axs.ravel()
 for i in range(Nrep):
     for j in range(6):
-        axs[j].plot(params_dim3_mecanoise[i][:,j],alpha=0.75,linewidth=1)
+        axs[j].plot(params_mecanoise[i][:,j],alpha=0.75,linewidth=1)
         axs[j].title.set_text(thetanames[j])
 fig.suptitle("Mecanistic noise")  
 fig.tight_layout()       
@@ -231,7 +232,6 @@ yreal_25 = jnp.nanquantile(yreal,axis=0,q=0.05)
 yreal_50 = jnp.nanquantile(yreal,axis=0,q=0.5)
 yreal_975 = jnp.nanquantile(yreal,axis=0,q=0.95)
 
-import numpy as np
 def plot_vpc(yreal,dreal,ysim,fn):
 	quant = np.quantile(ysim,[0.05,0.5,0.95],axis=1)
 	quant = np.quantile(quant,[0.025,0.5,0.975],axis=1)
